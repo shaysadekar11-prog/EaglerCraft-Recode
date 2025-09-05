@@ -241,23 +241,23 @@
   "related_applications": [
     {
       "platform": "web",
-      "url": "https://eaglercraft.com",
+      "url": "https://eagl.xo.je",
       "id": "eaglercraft-recode"
     }
   ],
   "prefer_related_applications": false,
   "scope_extensions": [
     {
-      "origin": "https://eaglercraft.com"
+      "origin": "https://eagl.xo.je"
     },
     {
-      "origin": "https://*.eaglercraft.com"
+      "origin": "https://*.eagl.xo.je"
     },
     {
-      "origin": "https://eaglercraft.net"
+      "origin": "https://eagl.xo.je"
     },
     {
-      "origin": "https://*.eaglercraft.net"
+      "origin": "https://*.eagl.xo.je"
     }
   ],
   "widgets": [
@@ -309,7 +309,7 @@
   "version": "2.3.7",
   "version_name": "EaglerCraft Recode - Enhanced Edition",
   "author": "lax1dude, kiwinatra",
-  "homepage_url": "https://eaglercraft.com",
+  "homepage_url": "https://eagl.xo.je",
   "developer": {
     "name": "lax1dude",
     "url": "https://github.com/kiwinatra",
@@ -406,5 +406,5 @@
   "user_preferences": {
     "color_scheme": "dark"
   },
-  "update_url": "https://eaglercraft.com/updates.xml"
+  "update_url": "https://eagl.xo.je/updates.xml"
 }

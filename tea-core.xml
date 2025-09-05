@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<teavm-config xmlns="http://teavm.org/schema/tea-core-config-1.5" 
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:schemaLocation="http://teavm.org/schema/tea-core-config-1.5 http://teavm.org/schema/tea-core-config-1.5.xsd">
+
+    <project name="EaglerCraft-Recode" version="2.4.1" organization="Kiwinatra-Studios">
+        <authors>
+            <author>lax1dude</author>
+            <author>kiwinatra</author>
+            <author>shonaax</author>
+        </authors>
+        <license>EaglerCraft Public License v2.3</license>
+    </project>
+
+    <compilation targetType="JAVASCRIPT" targetDirectory="build/web/release" 
+                 mainClass="net.minecraft.client.Minecraft" minifying="true" 
+                 optimizationLevel="ADVANCED" incremental="false" maxTopLevelNames="15000" 
+                 runtime="RUNTIME" debugInformation="false">
+        <sourceMaps generated="false" sourceFiles="true"/>
+        <obfuscation enabled="true">
+            <excludedClasses>
+                <pattern>net.minecraft.client.**</pattern>
+                <pattern>com.google.common.**</pattern>
+                <pattern>org.apache.logging.**</pattern>
+            </excludedClasses>
+        </obfuscation>
+    </compilation>
+
+    <classpath>
+        <classFiles>
+            <path>build/classes/java/main/**/*.class</path>
+            <path>build/classes/java/client/**/*.class</path>
+            <path>lib/teavm-classlib-0.8.2.jar</path>
+        </classFiles>
+        <excludedClasses>
+            <pattern>**/test/**</pattern>
+            <pattern>**/debug/**</pattern>
+            <pattern>**/internal/**</pattern>
+        </excludedClasses>
+    </classpath>
+
+    <classesToPreserve>
+        <pattern>net.minecraft.**</pattern>
+        <pattern>com.google.**</pattern>
+        <pattern>org.apache.**</pattern>
+        <pattern>java.**</pattern>
+        <pattern>javax.**</pattern>
+    </classesToPreserve>
+
+    <properties>
+        <property name="teavm.js.moduleType" value="ES2020"/>
+        <property name="teavm.js.generateQueue" value="true"/>
+        <property name="teavm.js.longjmp" value="emulated"/>
+        <property name="teavm.js.strict" value="true"/>
+        <property name="teavm.js.esVersion" value="2020"/>
+        <property name="teavm.heapSize" value="67108864"/>
+        <property name="teavm.stackSize" value="524288"/>
+        <property name="teavm.optimizationLevel" value="MAXIMUM"/>
+    </properties>
+
+    <wasm enabled="true" memoryMode="GROWING" minMemorySize="16777216" maxMemorySize="268435456"/>
+
+    <plugins>
+        <jso enabled="true" generateWrappers="true"/>
+        <threads enabled="false" maxWorkers="4"/>
+        <resources enabled="true">
+            <includes>
+                <pattern>**/*.png</pattern>
+                <pattern>**/*.ogg</pattern>
+                <pattern>**/*.wav</pattern>
+                <pattern>**/*.lang</pattern>
+                <pattern>**/*.properties</pattern>
+                <pattern>**/*.json</pattern>
+                <pattern>**/*.dat</pattern>
+            </includes>
+            <excludes>
+                <pattern>**/debug/**</pattern>
+                <pattern>**/test/**</pattern>
+                <pattern>**/temp/**</pattern>
+            </excludes>
+            <resourcePackages>
+                <package>net.minecraft.client.resources</package>
+                <package>net.minecraft.client.audio</package>
+            </resourcePackages>
+        </resources>
+        <reflection enabled="true" allDeclaredMethods="true" allDeclaredConstructors="true" allDeclaredFields="true">
+            <includedClasses>
+                <pattern>net.minecraft.**</pattern>
+                <pattern>java.util.**</pattern>
+            </includedClasses>
+        </reflection>
+        <exceptions enabled="true" stackTraces="true"/>
+        <assertions enabled="false"/>
+        <logging enabled="true" level="WARN"/>
+        <date enabled="true" timezone="UTC"/>
+        <unicode enabled="true"/>
+        <collections enabled="true"/>
+        <files enabled="true"/>
+        <console enabled="true"/> <!--ctrl win key74-->
+        <monitoring enabled="false"/>
+    </plugins>
+
+    <transformations>
+        <removeUnusedMethods enabled="true"/>
+        <removeUnusedFields enabled="true"/>
+        <removeUnusedClasses enabled="true"/>
+        <aggressiveInline enabled="true"/>
+        <devirtualize enabled="true"/>
+        <constantPropagation enabled="true"/>
+    </transformations>
+
+    <cache enabled="true" directory="build/teavm/cache" maxSize="104857600"/>
+
+    <generated sourceDirectory="build/teavm/generated" keepSources="false"/>
+
+    <environment>
+        <systemProperties>
+            <property name="java.version" value="11"/>
+            <property name="teavm.platform" value="web"/>
+            <property name="minecraft.version" value="1.5.2"/>
+            <property name="eaglercraft.optimized" value="true"/>
+        </systemProperties>
+    </environment>
+
+    <bundling enabled="true" outputFileName="eaglercraft_fnp.js" compression="BROTLI">
+        <chunking enabled="true" maxChunkSize="1048576"/>
+    </bundling>
+
+    <verification enabled="true" level="STRICT"/>
+
+    <monitoring progress="true" memoryUsage="true" timing="true"/>
+
+    <extensions>
+        <eaglercraft webglOptimizations="true" audioWorklet="true" wasmMemory="true" gzipCompression="true"/>
+        <tea_offline version="offline_1.12.1">
+            <cacheStrategies>
+                <strategy>AGGRESSIVE</strategy>
+            </cacheStrategies>
+        </tea_offline>
+    </extensions>
+
+    <metadata buildTimestamp="true" buildHost="true" compilerVersion="true" gitRevision="true"/>
+
+    <output reportFile="build/reports/teavm-build.json" statistics="true" warningsAsErrors="false"/>
+
+</teavm-config>
