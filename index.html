@@ -1,137 +1,41 @@
-<!DOCTYPE html>
-<html lang="ru" data-theme="dark">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <meta name="format-detection" content="telephone=no">
-    
-    <title>EaglerCraft Recode | Minecraft 1.12.2 в браузере | Онлайн мультиплеер</title>
-    
-    <!-- Preload critical assets -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
-    
-    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
-    <link rel="dns-prefetch" href="https://fonts.gstatic.com">
-    <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
-    
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <link rel="preload" href="static/main.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <link rel="preload" href="static/modal.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    
-    <!-- Web App Manifest -->
-    <link rel="manifest" href="manifest.webmanifest" crossorigin="use-credentials">
-    <meta name="theme-color" content="#2d2d2d" media="(prefers-color-scheme: dark)">
-    <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
-    
-    <!-- Apple Touch Icons -->
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-    <link rel="apple-touch-startup-image" href="/apple-splash.png">
-    <meta name="apple-mobile-web-app-title" content="EaglerCraft">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    
-    <!-- Microsoft Tiles -->
-    <meta name="msapplication-TileColor" content="#2d2d2d">
-    <meta name="msapplication-TileImage" content="/mstile-144x144.png">
-    <meta name="msapplication-config" content="/browserconfig.xml">
-    
-    <!-- Favicons -->
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
-    <link rel="alternate icon" type="image/png" href="/favicon.png" sizes="32x32">
-    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
-    
-    <!-- SEO Meta -->
-    <meta name="description" content="EaglerCraft Recode — играйте в Minecraft 1.12.2 прямо в браузере! Полноценный мультиплеер, оптимизированная графика, WASM-движок. Без скачивания, без установки.">
-    <meta name="keywords" content="Minecraft, EaglerCraft, майнкрафт онлайн, браузерная игра, WASM, TeaVM, мультиплеер, 1.12.2, играть бесплатно">
-    <meta name="author" content="EaglerDev Team">
-    <meta name="robots" content="index, follow, max-image-preview:large">
-    <meta name="revisit-after" content="7 days">
-    
-    <!-- Open Graph -->
-    <meta property="og:title" content="EaglerCraft Recode — Minecraft 1.12.2 в браузере">
-    <meta property="og:description" content="Играйте в Minecraft с друзьями прямо в браузере! Полная версия 1.12.2 с мультиплеером.">
-    <meta property="og:type" content="game">
-    <meta property="og:url" content="https://eagl.xo.je">
-    <meta property="og:image" content="https://eagl.xo.je/og-image.jpg">
-    <meta property="og:image:width" content="1200">
-    <meta property="og:image:height" content="630">
-    <meta property="og:image:alt" content="EaglerCraft Recode - Minecraft в браузере">
-    <meta property="og:site_name" content="EaglerCraft">
-    <meta property="og:locale" content="ru_RU">
-    <meta property="og:video" content="https://eagl.xo.je/trailer.mp4">
-    
-    <!-- Twitter Card -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:site" content="@EaglerCraft">
-    <meta name="twitter:creator" content="@EaglerDev">
-    <meta name="twitter:title" content="EaglerCraft Recode">
-    <meta name="twitter:description" content="Minecraft 1.12.2 в вашем браузере!">
-    <meta name="twitter:image" content="https://eagl.xo.je/twitter-card.jpg">
-    
-    <!-- Structured Data -->
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "VideoGame",
-        "name": "EaglerCraft Recode",
-        "url": "https://eagl.xo.je",
-        "description": "Minecraft 1.12.2 в браузере с мультиплеером",
-        "operatingSystem": "Web Browser",
-        "applicationCategory": "GameApplication",
-        "gamePlatform": "Web Browser",
-        "author": {
-            "@type": "Organization",
-            "name": "EaglerDev Team"
-        }
-    }
-    </script>
-    
-    <!-- Security Headers -->
-    <meta http-equiv="Content-Security-Policy" content="
-        default-src 'self';
-        script-src 'self' 'wasm-unsafe-eval' 'inline-speculation-rules' https://cdnjs.cloudflare.com https://www.googletagmanager.com;
-        style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
-        img-src 'self' data: https: blob:;
-        font-src 'self' https://fonts.gstatic.com;
-        connect-src 'self' https://www.google-analytics.com wss://* ws://*;
-        frame-src 'none';
-        worker-src 'self' blob:;
-        media-src 'self' https:;
-        manifest-src 'self';
-        object-src 'none';
-        base-uri 'self';
-        form-action 'self';
-        frame-ancestors 'none';
-        upgrade-insecure-requests;
-    ">
-    
-    <meta http-equiv="Permissions-Policy" content="
-        geolocation=(),
-        microphone=(),
-        camera=(),
-        payment=(),
-        fullscreen=(self),
-        interest-cohort=(),
-        browsing-topics=(),
-        vertical-scroll=(self)
-    ">
-    
-    <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
-    <meta http-equiv="X-Content-Type-Options" content="nosniff">
-    <meta http-equiv="X-Frame-Options" content="DENY">
-    <meta http-equiv="X-XSS-Protection" content="1; mode=block">
-    
-    <!-- Version Info -->
-    <!-- [EA7] EaglerCraft Recode | Web Minecraft Client | v1.12.2_3.14 -->
-    <!-- [TeaVM] Java to WASM Compiler | v18.3 -->
-    <!-- [EeaVM] TeaVM fork | v0.1 -->
-    <!-- [Eagtek] Network Protocol | v2.1.3 -->
-    <!-- [EaglX] Performance Module | v1.5.0 -->
-    <!-- [LOADER] Resource Loader | v2.0.4 -->
+ <!DOCTYPE html>
+    <html lang="ru">
+    <head>
+        <title>EaglerCraft - Играй в Minecraft в браузере</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+        <link rel="preload" href="static/main.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <link rel="preload" href="static/modal.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <!-- [EA7] EaglerCraft Recode | Web Minecraft Client | v1.12.2_3.14 -->
+        <!-- [TeaVM] Java to WASM Compiler | v18.3 -->
+        <!-- [EeaVM] TeaVM fork | v0.1 -->
+        <!-- [Eagtek] Network Protocol | v2.1.3 -->
+        <!-- [EaglX] Performance Module | v1.5.0 -->
+        <!-- [LOADER] Resource Loader | v2.0.4 -->
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="description" content="Играйте в Minecraft прямо в браузере! EaglerCraft Recode — это оптимизированная версия Minecraft 1.12.2 с мультиплеером, работающая без скачивания.">
+        <meta name="keywords" content="Minecraft, EaglerCraft, играть онлайн, браузерная игра, майнкрафт в браузере, мультиплеер, WASM, TeaVM">
+        <meta name="author" content="Ваше имя / команда">
+        <meta name="robots" content="index, follow">
+        <meta property="og:title" content="EaglerCraft Recode — Minecraft в браузере">
+        <meta property="og:description" content="Играйте в Minecraft 1.12.2 прямо в браузере с друзьями!">
+        <meta property="og:type" content="website">
+        <meta property="og:url" content="https://eaglercraft.com">
+        <meta property="og:image" content="https://#">
+        <meta property="og:site_name" content="EaglerCraft">
+        <meta property="og:locale" content="ru_RU">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"> <!-- Для iOS -->
+        <meta name="msapplication-TileColor" content="#2d2d2d"> <!-- Для Windows -->
+        <meta name="msapplication-config" content="/browserconfig.xml"> <!-- Для IE/Edge -->
+        <meta property="og:type" content="game">
+        <meta property="og:locale:alternate" content="en_US">
+        <meta property="og:image:width" content="1200"> 
+        <meta property="og:image:height" content="630">
+        
 </head>
     <body>
         <div class="cursor"></div>
@@ -347,4 +251,5 @@
           </script>
         
     </body>
+
     </html> 
