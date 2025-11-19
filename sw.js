@@ -8,7 +8,8 @@ self.addEventListener('install', (event) => {
         '/index.html',
         '/static/main.js',
         '/static/main.css',
-        'eg.pyw'
+        'eg.pyw',
+        '/offline'
       ]))
   );
 });

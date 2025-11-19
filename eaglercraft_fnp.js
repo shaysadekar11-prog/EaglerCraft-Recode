@@ -1,4 +1,4 @@
-"use strict";
+"use strict"; // disabl in ftr
 (window.eaglercraftXClientScriptElement = document.currentScript),
 (function() {
     const _0x3c7e92 = (function(e, t) {

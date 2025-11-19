@@ -3,4 +3,4 @@ fr todo:
 [X] finish rest client
 [] publish 
 
-# TODO: compile
+# TODO: compile the client

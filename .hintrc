@@ -4,5 +4,6 @@
   ],
   "hints": {
     "disown-opener": "off"
-  }
+  },
+  "$schema": "https://raw.githubusercontent.com/devcontainers/spec/main/schemas/devContainer.schema.json"
 }

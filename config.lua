@@ -14,6 +14,7 @@ resources:
 
 browser:
   canvas: "#game-frame"
+  mobile: true
   resize: stretch
   preventContextMenu: yes
   pointerLock: yes

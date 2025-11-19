@@ -77,6 +77,7 @@ namespace EaglerCraft::Product {
         static constexpr auto BUILD_SYSTEM   = "EaglerBuild-Suite 3.2.0";
         static constexpr auto OPTIMIZATION   = "MAXIMUM";
         static constexpr auto TARGET_ARCH    = "wasm32-unknown-unknown";
+        static constexpr auto LINUX_PREFER   = "linux-arch"
         static constexpr auto EMSCRIPTEN_VER = "3.1.45";
     };
     

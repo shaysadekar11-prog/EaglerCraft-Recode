@@ -13,4 +13,4 @@ function decodeLargeBase64(inputFile, outputFile) {
 }
 
 
-decodeLargeBase64('base64.txt', 'decoded.txt');
+decodeLargeBase64('base64.txt', 'decoded_client.txt');
