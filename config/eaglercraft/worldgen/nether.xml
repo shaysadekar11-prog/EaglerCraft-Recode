@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WorldGenerator>
+    <GeneratorType>NETHER</GeneratorType>
+    <Seed>0</Seed>
+    
+    <TerrainSettings>
+        <SeaLevel>32</SeaLevel>
+        <LavaLevel>31</LavaLevel>
+        <CeilingHeight>128</CeilingHeight>
+    </TerrainSettings>
+    
+    <FeatureSettings>
+        <GenerateFortresses>true</GenerateFortresses>
+        <GenerateNetherWarts>true</GenerateNetherWarts>
+        <GenerateGlowstone>true</GenerateGlowstone>
+        <GenerateFire>true</GenerateFire>
+    </FeatureSettings>
+    
+    <OreSettings>
+        <NetherQuartzCount>16</NetherQuartzCount>
+        <GlowstoneCount>8</GlowstoneCount>
+        <MagmaCount>4</MagmaCount>
+        <SoulSandCount>12</SoulSandCount>
+    </OreSettings>
+    
+    <StructureSettings>
+        <FortressSpacing>30</FortressSpacing>
+        <FortressSeparation>10</FortressSeparation>
+    </StructureSettings>
+</WorldGenerator>

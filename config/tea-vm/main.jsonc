@@ -1,0 +1,35 @@
+{
+    "name": "eaglercraft-client",
+    "mainClass": "net.minecraft.client.Minecraft",
+    "runtime": {
+        "minHeapSize": 16,
+        "maxHeapSize": 512,
+        "stackSize": 128,
+        "optimizationLevel": "ADVANCED"
+    },
+    "classes": [
+        "net.minecraft.**",
+        "com.google.common.**",
+        "org.apache.commons.**"
+    ],
+    "resources": {
+        "include": [
+            "assets/**",
+            "config/**",
+            "textures/**",
+            "shaders/**"
+        ],
+        "exclude": [
+            "**/*.md",
+            "**/Thumbs.db"
+        ]
+    },
+    "transformers": [
+        "org.teavm.classlib.EnumTransformer",
+        "org.teavm.classlib.ReflectionTransformer"
+    ],
+    "target": "JAVASCRIPT",
+    "sourceMaps": true,
+    "debug": false,
+    "obfuscated": false
+}
