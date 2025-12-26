@@ -16,7 +16,7 @@
   "orientation": "landscape-primary",
   "dir": "ltr",
   "lang": "en-US",
-  "categories": ["entertainment", "games", "education"],
+  "categories": ["entertainment", "games", "education", "indevelopement"],
   "icons": [
     {
       "src": "/icons/icon-72x72.png",

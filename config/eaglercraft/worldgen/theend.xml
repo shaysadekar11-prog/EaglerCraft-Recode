@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WorldGenerator>
+    <GeneratorType>THE_END</GeneratorType>
+    <Seed>0</Seed>
+    
+    <TerrainSettings>
+        <MainIslandRadius>512</MainIslandRadius>
+        <MainIslandHeight>64</MainIslandHeight>
+        <OuterIslandsDistance>1024</OuterIslandsDistance>
+    </TerrainSettings>
+    
+    <FeatureSettings>
+        <GenerateEndCities>true</GenerateEndCities>
+        <GenerateEndShips>true</GenerateEndShips>
+        <GenerateChorusTrees>true</GenerateChorusTrees>
+        <GenerateGateways>true</GenerateGateways>
+    </FeatureSettings>
+    
+    <StructureSettings>
+        <EndCitySpacing>20</EndCitySpacing>
+        <GatewayCount>20</GatewayCount>
+    </StructureSettings>
+    
+    <DragonFight>
+        <CrystalsPerPillar>1</CrystalsPerPillar>
+        <PillarCount>10</PillarCount>
+    </DragonFight>
+</WorldGenerator>

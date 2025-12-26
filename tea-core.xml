@@ -22,6 +22,7 @@
                 <pattern>net.minecraft.client.**</pattern>
                 <pattern>com.google.common.**</pattern>
                 <pattern>org.apache.logging.**</pattern>
+                <pattern>org.lx2dude.lsx.**</pattern>
             </excludedClasses>
         </obfuscation>
     </compilation>

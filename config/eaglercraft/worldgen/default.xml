@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WorldGenerator>
+    <GeneratorType>DEFAULT</GeneratorType>
+    <Seed>0</Seed>
+    
+    <TerrainSettings>
+        <SeaLevel>63</SeaLevel>
+        <RiverSize>4</RiverSize>
+        <DirtDepth>4</DirtDepth>
+    </TerrainSettings>
+    
+    <FeatureSettings>
+        <GenerateCaves>true</GenerateCaves>
+        <GenerateRavines>true</GenerateRavines>
+        <GenerateMineshafts>true</GenerateMineshafts>
+        <GenerateStrongholds>true</GenerateStrongholds>
+        <GenerateVillages>true</GenerateVillages>
+        <GenerateTemples>true</GenerateTemples>
+        <GenerateMonuments>true</GenerateMonuments>
+    </FeatureSettings>
+    
+    <OreSettings>
+        <DirtCount>20</DirtCount>
+        <GravelCount>16</GravelCount>
+        <CoalCount>20</CoalCount>
+        <IronCount>20</IronCount>
+        <GoldCount>2</GoldCount>
+        <RedstoneCount>8</RedstoneCount>
+        <DiamondCount>1</DiamondCount>
+        <LapisCount>1</LapisCount>
+    </OreSettings>
+</WorldGenerator>

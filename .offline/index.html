@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Minecraft Offline Downloader</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- will be updated at -->
+    <!-- Telegram Web App API -->
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <script>
         tailwind.config = {
             darkMode: 'class',
@@ -42,6 +43,9 @@
             .text-gradient {
                 @apply bg-clip-text text-transparent bg-gradient-to-r from-minecraft-green to-minecraft-orange;
             }
+            .telegram-button {
+                background: linear-gradient(45deg, #0088cc, #34b7f1);
+            }
         }
     </style>
 </head>
@@ -52,6 +56,16 @@
         <div class="absolute -bottom-20 -right-20 w-64 h-64 bg-minecraft-orange/10 rounded-full filter blur-xl opacity-70 animate-float animation-delay-2000"></div>
         
         <div class="p-6 relative z-10">
+            <!-- Telegram Info -->
+            <div class="flex items-center justify-center mb-4">
+                <div class="flex items-center space-x-2 bg-blue-900/30 px-3 py-2 rounded-lg border border-blue-700/50">
+                    <svg class="w-5 h-5 text-blue-400" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M12 0c-6.627 0-12 4.975-12 11.111 0 3.497 1.745 6.616 4.472 8.652v4.237l4.086-2.242c1.09.301 2.246.464 3.442.464 6.627 0 12-4.974 12-11.111 0-6.136-5.373-11.111-12-11.111zm5.797 17.305l-1.129 3.128-1.192-2.783-2.476-.028 5.797-5.317-5.797 5.317 2.476-.028 1.192-2.783 1.129 3.128-3.128-1.129 2.783-1.192.028-2.476-5.317 5.797 5.317-5.797-.028 2.476 2.783 1.192-3.128 1.129z"/>
+                    </svg>
+                    <span class="text-blue-300 text-sm font-medium">eaglxo.t.me</span>
+                </div>
+            </div>
+            
             <h1 class="text-3xl font-bold text-center mb-6 text-gradient">
                 Minecraft Offline
             </h1>
@@ -85,106 +99,186 @@
             >
                 Download Selected Version
             </button>
+            
+            <!-- Telegram Share Button -->
+            <button 
+                id="telegramShareBtn"
+                class="w-full py-3 px-4 telegram-button text-white font-bold rounded-lg shadow-lg hover:shadow-blue-500/20 transition-all duration-300 transform hover:-translate-y-0.5 hover:scale-[1.02] active:scale-95 mt-4 hidden"
+            >
+                Share in Telegram
+            </button>
+            
+            <!-- Instructions -->
+            <div class="mt-6 p-4 bg-gray-800/50 rounded-lg border border-gray-700">
+                <h3 class="text-minecraft-green font-bold mb-2">How to use:</h3>
+                <ol class="text-gray-300 text-sm list-decimal list-inside space-y-1">
+                    <li>Select a Minecraft version</li>
+                    <li>Download the file</li>
+                    <li>Open the downloaded HTML file in your browser</li>
+                    <li>Enjoy offline Minecraft!</li>
+                </ol>
+            </div>
         </div>
     </div>
 
     <script>
-       const versionButtons = document.querySelectorAll('.version-btn');
-const downloadBtn = document.getElementById('downloadBtn');
-let selectedUrl = '';
-
-// Выбор версии
-versionButtons.forEach(btn => {
-    btn.addEventListener('click', function() {
-        // Сбрасываем выделение у всех кнопок
-        versionButtons.forEach(b => {
-            b.classList.remove('bg-green-600', 'ring-2', 'ring-green-400');
-            b.classList.add('bg-gray-800');
-        });
-        
-        // Выделяем выбранную версию
-        this.classList.remove('bg-gray-800');
-        this.classList.add('bg-green-600', 'ring-2', 'ring-green-400');
-        selectedUrl = this.getAttribute('data-url');
-        
-        // Активируем кнопку скачивания
-        downloadBtn.classList.remove('hidden', 'bg-red-500');
-        downloadBtn.textContent = `Скачать ${this.textContent.trim()}`;
-        downloadBtn.disabled = false;
-        
-        // Анимация выбора
-        this.animate([
-            { transform: 'scale(1)' },
-            { transform: 'scale(1.05)' },
-            { transform: 'scale(1)' }
-        ], { duration: 300 });
-    });
-});
-
-// Скачивание файла
-downloadBtn.addEventListener('click', async function() {
-    if (!selectedUrl) return;
-    
-    const originalText = this.textContent;
-    
-    // Показываем состояние загрузки
-    this.innerHTML = `
-        <svg class="animate-spin h-5 w-5 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-        </svg>
-        Скачивание...
-    `;
-    this.disabled = true;
-    
-    try {
-        // Получаем имя файла
-        let fileName = selectedUrl.split('/').pop();
-        if (selectedUrl.includes('1.12.2')) {
-            fileName = 'minecraft_1.12.2_offline.html';
+        // Telegram Web App initialization
+        let tg = null;
+        try {
+            tg = window.Telegram.WebApp;
+            if (tg) {
+                tg.expand();
+                tg.enableClosingConfirmation();
+            }
+        } catch (e) {
+            console.log("Not in Telegram WebView");
         }
-        
-        // Метод 1: Используем fetch + Blob (лучший способ)
-        const response = await fetch(selectedUrl);
-        if (!response.ok) throw new Error('Ошибка загрузки');
-        
-        const blob = await response.blob();
-        const blobUrl = URL.createObjectURL(blob);
-        
-        const a = document.createElement('a');
-        a.href = blobUrl;
-        a.download = fileName;
-        document.body.appendChild(a);
-        a.click();
-        
-        // Очистка
-        setTimeout(() => {
-            document.body.removeChild(a);
-            URL.revokeObjectURL(blobUrl);
-        }, 100);
-        
-        // Успешное скачивание
-        this.textContent = 'Скачано!';
-        
-    } catch (error) {
-        console.error('Ошибка:', error);
-        
-        // Метод 2: Fallback для локальных файлов
-        const a = document.createElement('a');
-        a.href = selectedUrl;
-        a.download = fileName || 'minecraft_offline.html';
-        document.body.appendChild(a);
-        a.click();
-        document.body.removeChild(a);
-        
-        this.textContent = 'Скачивание началось!';
-    } finally {
-        setTimeout(() => {
-            this.textContent = originalText;
-            this.disabled = false;
-        }, 2000);
-    }
-});
+
+        const versionButtons = document.querySelectorAll('.version-btn');
+        const downloadBtn = document.getElementById('downloadBtn');
+        const telegramShareBtn = document.getElementById('telegramShareBtn');
+        let selectedUrl = '';
+        let selectedVersion = '';
+
+        // Выбор версии
+        versionButtons.forEach(btn => {
+            btn.addEventListener('click', function() {
+                // Сбрасываем выделение у всех кнопок
+                versionButtons.forEach(b => {
+                    b.classList.remove('bg-green-600', 'ring-2', 'ring-green-400');
+                    b.classList.add('bg-minecraft-darkgreen/30');
+                });
+                
+                // Выделяем выбранную версию
+                this.classList.remove('bg-minecraft-darkgreen/30');
+                this.classList.add('bg-green-600', 'ring-2', 'ring-green-400');
+                selectedUrl = this.getAttribute('data-url');
+                selectedVersion = this.textContent.trim();
+                
+                // Активируем кнопку скачивания
+                downloadBtn.classList.remove('hidden');
+                downloadBtn.textContent = `Download ${selectedVersion}`;
+                downloadBtn.disabled = false;
+                
+                // Показываем кнопку поделиться в Telegram
+                telegramShareBtn.classList.remove('hidden');
+                
+                // Анимация выбора
+                this.animate([
+                    { transform: 'scale(1)' },
+                    { transform: 'scale(1.05)' },
+                    { transform: 'scale(1)' }
+                ], { duration: 300 });
+            });
+        });
+
+        // Скачивание файла
+        downloadBtn.addEventListener('click', async function() {
+            if (!selectedUrl) return;
+            
+            const originalText = this.textContent;
+            
+            // Показываем состояние загрузки
+            this.innerHTML = `
+                <svg class="animate-spin h-5 w-5 mr-2 inline" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                </svg>
+                Downloading...
+            `;
+            this.disabled = true;
+            
+            try {
+                // Получаем имя файла
+                let fileName = selectedUrl.split('/').pop();
+                if (selectedUrl.includes('1.12.2')) {
+                    fileName = 'minecraft_1.12.2_offline.html';
+                }
+                
+                // Метод 1: Используем fetch + Blob (лучший способ)
+                const response = await fetch(selectedUrl);
+                if (!response.ok) throw new Error('Ошибка загрузки');
+                
+                const blob = await response.blob();
+                const blobUrl = URL.createObjectURL(blob);
+                
+                const a = document.createElement('a');
+                a.href = blobUrl;
+                a.download = fileName;
+                document.body.appendChild(a);
+                a.click();
+                
+                // Очистка
+                setTimeout(() => {
+                    document.body.removeChild(a);
+                    URL.revokeObjectURL(blobUrl);
+                }, 100);
+                
+                // Успешное скачивание
+                this.textContent = 'Downloaded!';
+                
+                // Если в Telegram WebView, показываем уведомление
+                if (tg) {
+                    tg.showPopup({
+                        title: 'Success!',
+                        message: `${selectedVersion} has been downloaded.`,
+                        buttons: [{ type: 'ok' }]
+                    });
+                }
+                
+            } catch (error) {
+                console.error('Ошибка:', error);
+                
+                // Метод 2: Fallback для локальных файлов
+                const a = document.createElement('a');
+                a.href = selectedUrl;
+                a.download = fileName || 'minecraft_offline.html';
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                
+                this.textContent = 'Download started!';
+            } finally {
+                setTimeout(() => {
+                    this.textContent = originalText;
+                    this.disabled = false;
+                }, 2000);
+            }
+        });
+
+        // Поделиться в Telegram
+        telegramShareBtn.addEventListener('click', function() {
+            if (!selectedUrl) return;
+            
+            const shareText = `🎮 Download Minecraft Offline ${selectedVersion}\n\nPlay Minecraft offline in your browser!\n\nDownload link: ${selectedUrl}\n\nShared via @eaglxo`;
+            
+            // Если в Telegram WebView, используем Telegram API
+            if (tg) {
+                tg.shareUrl(
+                    `Minecraft Offline ${selectedVersion}`,
+                    `Download Minecraft ${selectedVersion} to play offline in your browser!`,
+                    selectedUrl
+                );
+            } else {
+                // Если не в Telegram, показываем ссылку для копирования
+                const tempInput = document.createElement('input');
+                tempInput.value = shareText;
+                document.body.appendChild(tempInput);
+                tempInput.select();
+                document.execCommand('copy');
+                document.body.removeChild(tempInput);
+                
+                // Показываем уведомление
+                alert('Share text copied to clipboard!');
+            }
+        });
+
+        // Автоматически выбираем первую версию при загрузке
+        window.addEventListener('load', function() {
+            if (versionButtons.length > 0) {
+                versionButtons[0].click();
+            }
+        });
     </script>
 </body>
 </html>

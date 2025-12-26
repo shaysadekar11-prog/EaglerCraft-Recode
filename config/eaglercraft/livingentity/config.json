@@ -1,0 +1,31 @@
+{
+  "entitySettings": {
+    "maxHealth": 20.0,
+    "movementSpeed": 0.7,
+    "attackDamage": 1.0,
+    "followRange": 16,
+    "armorValue": 0,
+    "despawnTime": 6000,
+    "hostile": false,
+    "boss": false
+  },
+  "aiSettings": {
+    "hasAI": true,
+    "canSwim": true,
+    "canFly": false,
+    "immuneToFire": false,
+    "immuneToArrows": false
+  },
+  "drops": {
+    "enabled": true,
+    "minItems": 0,
+    "maxItems": 2,
+    "experienceMin": 1,
+    "experienceMax": 3
+  },
+  "rendering": {
+    "modelScale": 1.0,
+    "shadowSize": 0.5,
+    "texturePath": "textures/entity/default.png"
+  }
+}

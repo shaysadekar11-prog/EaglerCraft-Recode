@@ -1,0 +1,42 @@
+# Russian localization for tea-vm 18.4
+common:
+  yes: "Да"
+  no: "Нет"
+  cancel: "Отмена"
+  save: "Сохранить"
+  delete: "Удалить"
+  edit: "Редактировать"
+  loading: "Загрузка..."
+  error: "Ошибка"
+  success: "Успешно"
+
+navigation:
+  home: "Главная"
+  settings: "Настройки"
+  profile: "Профиль"
+  help: "Помощь"
+
+auth:
+  login: "Войти"
+  logout: "Выйти"
+  register: "Зарегистрироваться"
+  username: "Имя пользователя"
+  password: "Пароль"
+  email: "Электронная почта"
+
+messages:
+  welcome: "Добро пожаловать!"
+  not_found: "Страница не найдена"
+  access_denied: "Доступ запрещен"
+  invalid_input: "Неверные данные"
+
+errors:
+  network: "Ошибка сети"
+  server: "Ошибка сервера"
+  validation: "Ошибка валидации"
+  unknown: "Неизвестная ошибка"
+
+dates:
+  today: "Сегодня"
+  yesterday: "Вчера"
+  tomorrow: "Завтра"
